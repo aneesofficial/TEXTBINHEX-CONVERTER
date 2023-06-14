@@ -1,0 +1,219 @@
+#include <iostream>
+
+#include <bitset>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+string binConvert(string dd){
+int index = 0;
+
+string save = "";
+bool invalid = false;
+
+for(int i=0; i<dd.length(); i++)
+{
+switch (dd[i]){
+case ' ':
+save += "11";
+break;
+case 't':
+save += "1001";
+break;
+case 'n':
+save += "10000";
+break;
+case 's':
+save += "0101";
+break;
+case 'r':
+save += "01000";
+break;
+case 'd':
+save += "00101";
+break;
+case '!':
+save += "001000";
+break;
+case 'c':
+save += "000101";
+break;
+case 'm':
+save += "000011";
+break;
+case 'g':
+save += "0000100";
+break;
+case 'b':
+save += "0000010";
+break;
+case 'v':
+save += "00000001";
+break;
+case 'k':
+save += "0000000001";
+break;
+case 'q':
+save += "000000000001";
+break;
+case 'e':
+save += "101";
+break;
+case 'o':
+save += "10001";
+break;
+case 'a':
+save += "011";
+break;
+case 'i':
+save += "01001";
+break;
+case 'h':
+save += "0011";
+break;
+case 'l':
+save += "001001";
+break;
+case 'u':
+save += "00011";
+break;
+case 'f':
+save += "000100";
+break;
+case 'p':
+save += "0000101";
+break;
+case 'w':
+save += "0000011";
+break;
+case 'y':
+save += "0000001";
+break;
+case 'j':
+save += "000000001";
+break;
+case 'x':
+save += "00000000001";
+break;
+case 'z':
+save += "000000000000";
+break;
+default:
+cout << "Invalid value." << endl;
+invalid = true;
+}
+
+i++;
+}
+if(!invalid)
+return save;
+else
+return "";
+}
+
+string hexConvert(string sBinary)
+{
+string rest = "",tmp,chr = "0000";
+int len = sBinary.length()/4;
+chr = chr.substr(0,len);
+sBinary = chr+sBinary;
+
+int spacer = 0;
+
+for (int i=0;i<sBinary.length();i+=4,spacer++)
+{
+   if(spacer % 2 == 0){
+       rest += " ";    
+   }
+   
+tmp = sBinary.substr(i,4);
+if (!tmp.compare("0000"))
+{
+rest = rest + "0";
+}
+else if (!tmp.compare("0001"))
+{
+rest = rest + "1";
+}
+else if (!tmp.compare("0010"))
+{
+rest = rest + "2";
+}
+else if (!tmp.compare("0011"))
+{
+rest = rest + "3";
+}
+else if (!tmp.compare("0100"))
+{
+rest = rest + "4";
+}
+else if (!tmp.compare("0101"))
+{
+rest = rest + "5";
+}
+else if (!tmp.compare("0110"))
+{
+rest = rest + "6";
+}
+else if (!tmp.compare("0111"))
+{
+rest = rest + "7";
+}
+else if (!tmp.compare("1000"))
+{
+rest = rest + "8";
+}
+else if (!tmp.compare("1001"))
+{
+rest = rest + "9";
+}
+else if (!tmp.compare("1010"))
+{
+rest = rest + "A";
+}
+else if (!tmp.compare("1011"))
+{
+rest = rest + "B";
+}
+else if (!tmp.compare("1100"))
+{
+rest = rest + "C";
+}
+else if (!tmp.compare("1101"))
+{
+rest = rest + "D";
+}
+else if (!tmp.compare("1110"))
+{
+rest = rest + "E";
+}
+else if (!tmp.compare("1111"))
+{
+rest = rest + "F";
+}
+else
+{
+continue;
+}
+}
+return rest;
+}
+
+int main(){
+    string dd;
+    string inBin;
+
+    cout << "Enter anything: ";
+    getline(cin, dd);
+   
+    inBin = binConvert(dd);
+    if(inBin != ""){
+    cout << "Binary : ";
+    cout << inBin << endl;
+   
+        cout << "Hex Conversion: " << hexConvert(inBin) << endl;
+       
+        system("pause");
+}
+}
